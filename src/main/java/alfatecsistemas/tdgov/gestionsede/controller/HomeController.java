@@ -1,9 +1,14 @@
 package alfatecsistemas.tdgov.gestionsede.controller;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +22,12 @@ import alfatecsistemas.tdgov.gestionsede.model.Token;
 @RestController
 public class HomeController {
 
-    @RequestMapping(value = "/areas", method = RequestMethod.POST)
-    public void index() {
+    @RequestMapping(value = "/showAreas", method = RequestMethod.POST)
+    public String index() {
 
 		final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 
-		final String URI_acces = "http://172.20.12.101:8888/tdgov/oath2/token";
+		final String URI_acces = "http://172.20.12.101:8888/tdgov/oauth2/token";
 
 		JSONObject obj = new JSONObject();
 
@@ -34,20 +39,27 @@ public class HomeController {
 		obj.put("password","Oviedo$2000");
 
 		String body = obj.toString();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);		
 
-		HttpEntity<String> myEntity = new HttpEntity<String>(body);
+		HttpEntity<String> myEntity = new HttpEntity<String>(body, headers);
 
 		RestTemplate restTemplate = new RestTemplate();
 
-		Token gainedToken = restTemplate.postForObject(URI_acces, myEntity, Token.class);
-		
-		log.info(body);
+		ResponseEntity entity = restTemplate.postForEntity(URI_acces, myEntity, String.class);
 
-		System.out.println(gainedToken.getAccess_token());
+		if(entity.getStatusCode().value() != 200){
+			log.error("El servidor no responde ");
+			break;
+		}else{
+			List<String> acces_token = entity.getHeaders().get("access_token");
+		}
+		return acces_token;
 	}
 	
 	@GetMapping(value = "/mostrar")
-    public Token getToken() {
+    public void getToken() {
 
 		final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 
@@ -64,15 +76,7 @@ public class HomeController {
 
 		String body = obj.toString();
 
-		HttpEntity<String> myEntity = new HttpEntity<String>(body);
 
-		RestTemplate restTemplate = new RestTemplate();
-
-		Token gainedToken = restTemplate.postForObject(URI_acces, myEntity, Token.class);
-
-		System.out.println(gainedToken.getAccess_token());
-
-		return gainedToken;
     }
 
 }

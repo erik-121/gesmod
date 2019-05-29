@@ -46,14 +46,13 @@
               <span class="d-lg-inline">{{Usuario}}</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="usersDropdown">
-              <a class="dropdown-item" href="auth/logout.php">
+              <a class="dropdown-item" href="#">
                 <i class="fa fa-sign-out"></i> Salir
               </a>
             </div>
           </li>
         </ul>
       </div>
-      <?php } ?>
     </nav>
 
   <div class="content-wrapper">
@@ -68,8 +67,8 @@
       <div id="page-wrapper">
         <section>
           <h1>Gestión de la Sede Electónica v0.2</h1>
-          <form action="/areas" method="post">
-            <button name="viewAreas" value="ViewAreas">Ver areas</button>
+          <form action="/showAreas" method="post">
+            <button name="showAreas" value="showAreas">Ver areas</button>
           </form>
         </section>
 
