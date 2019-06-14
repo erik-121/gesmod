@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Gestión Áreas</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <!--<div th:if="${areas.size()==0}">No hay categorías en la lista!</div>-->
+    <table>
+        <thead>
+            <tr>
+                <th>UID</th>
+                <th>Nombre</th>
+                <th>Procedimientos</th>
+            </tr>
+        </thead>
+        <!-- <tbody>
+            <tr th:each="area: ${areas}">
+                <td th:text="${area.uid}"></td>
+                <td th:text="${area.nombre}"></td>
+                <td th:text="${area.procesos}"></td>
+            </tr>-->
+        </tbody>
+    </table>
+    <div th:text="${response}"></div>
+</body>
+
+</html>
