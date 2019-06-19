@@ -13,21 +13,9 @@
 </body>
 </html>
 
+  <!--include "templates/head.php";
+  require "includes/config.php"; -->
 
-
-<?php 
-  session_start();
-  ini_set('session.cache_limiter','public');
-  session_cache_limiter(false);
-  $dni = $_SESSION['dni'];
-  if (!$_SESSION["loggedIn"]){
-    $location = "Location: index.php";
-    header($location);
-    exit();  
-  }
-  include "templates/head.php";
-  require "includes/config.php"; 
-?>
 <body class="fixed-nav sticky-footer bg-tdgov-dark" id="page-top">
   <?php include "templates/nav.php"; ?>
   <div class="content-wrapper">

@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -41,6 +42,15 @@ public class HomeController {
 
 	public static Token tokenId;
 
+	@Value("${processmaker.server.ip}")
+	private String serverIP;
+
+	@Value("${processmaker.server.port}")
+	private String serverPort;
+
+	@Value("${processmaker.workspace}")
+	private String workspace;
+
 	/**
 	 * Sample method for using spring MVC
 	 * 
@@ -63,7 +73,7 @@ public class HomeController {
 		TokenRepositoryImpl token = new TokenRepositoryImpl();
 		tokenId = token.getToken();
 
-		final String URI_access = "http://172.20.12.101:8888/api/1.0/tdgov/project/categories";
+		final String URI_access = "http://"+serverIP+":"+serverPort+"/api/1.0/"+workspace+"/project/categories";
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -81,7 +91,12 @@ public class HomeController {
 		return null;
 
 	}
-
+	/**
+	 * Method that gets the categories from the REST API at ProcessMaker, and gives it back to the model and view.
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
 	@PostMapping(value = "/showAreas")
 	public String getAllAreas(Model model) throws IOException {
 
@@ -90,7 +105,7 @@ public class HomeController {
 
 		OkHttpClient client = new OkHttpClient();
 
-		Request request = new Request.Builder().url("http://172.20.12.101:8888/api/1.0/tdgov/project/categories").get()
+		Request request = new Request.Builder().url("http://"+serverIP+":"+serverPort+"/api/1.0/"+workspace+"/project/categories").get()
 				.addHeader("Authorization", "Bearer " + tokenId.getAccess_token()).build();
 
 		Response response = client.newCall(request).execute();
