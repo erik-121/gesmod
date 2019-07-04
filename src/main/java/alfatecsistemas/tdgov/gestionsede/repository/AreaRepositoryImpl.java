@@ -2,7 +2,7 @@ package alfatecsistemas.tdgov.gestionsede.repository;
 
 import org.springframework.web.client.RestTemplate;
 
-import alfatecsistemas.tdgov.gestionsede.model.Area;
+import alfatecsistemas.tdgov.gestionsede.model.Category;;
 
 
 public class AreaRepositoryImpl {
@@ -11,11 +11,11 @@ public class AreaRepositoryImpl {
 	
 	private RestTemplate restTemplate = new RestTemplate();
 	
-	public Area[] getAllAreas() {
+	public Category[] getAllAreas() {
 		
-		Area[] areas = restTemplate.getForObject(URI_AREAS, Area[].class);
 		
-		return areas;
+		
+		return null;
 	}
 
 }
