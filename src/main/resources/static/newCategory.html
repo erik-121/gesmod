@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="gestión sede">
+<meta name="author" content="Eric">
+<title>Gestión Sede Electrónica</title>
+<!-- Bootstrap core CSS-->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!-- Custom styles for this template-->
+<link href="css/sb-admin.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+<body class="fixed-nav sticky-footer bg-tdgov-dark" id="page-top">
+    <!--Se debería mostrar la nav si está logueado ya el usuario-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+        <a class="navbar-brand" href="#"><img src="img/Logotipo-Color.png" class="img-fluid" alt="Logo" width="50%"
+                height="50%"> Gestión Sede</a>
+
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb" style="margin-top: 25px;">
+                <li class="breadcrumb-item"> <a href="../index.html">Módulo de gestión</a> </li>
+                <li class="breadcrumb-item active">Nueva categoría</li>
+            </ol>
+            <div id="page-wrapper">
+                <form action="newArea" method="POST">
+                    <div class="form-row row justify-content-md-center">
+                        <div class="form-group col-lg-6">
+                            <label for="text">Escriba el nombre de la nueva categoría:</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-list-ul"></i></div>
+                                </div>
+                                <input type="text" id="newAreaName" name="newAreaName" class="form-control"
+                                    placeholder="Nueva Categoria" required>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="form-row row justify-content-md-center">
+                        <div class="form-group col-lg-12 text-center">
+                            <button class="btn btn-success"><i class="fa fa-sign-in"></i> Crear</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.back();"><i
+                                    class="fa fa-history"></i> Volver</button>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </form>
+
+            </div> <!-- /.page-wrapper -->
+        </div> <!-- /.content-wrapper -->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Alfatec 2019</small>
+                </div>
+            </div>
+        </footer>
+</body>
+
+</html>
