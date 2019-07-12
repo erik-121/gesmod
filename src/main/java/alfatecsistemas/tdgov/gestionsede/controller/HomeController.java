@@ -1,6 +1,9 @@
 package alfatecsistemas.tdgov.gestionsede.controller;
 
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.gson.Gson;
 
 import org.apache.commons.logging.Log;
@@ -16,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -120,6 +124,21 @@ public class HomeController {
 
 		return "login";
 
+	}
+	
+	@ResponseBody
+	@PostMapping(params = "removeCategory", path = {"/actions", "/actions/{id}"})
+    public String removeCategory(@RequestParam("removeCategory") String index, HttpServletRequest request) {
+
+		System.out.println("Se BORRA virtualmente la categoría:" + index);
+
+		return "Se BORRA virtualmente la categoría:" + index;
+        //order.items.remove(index);
+        /*if (AJAX_HEADER_VALUE.equals(request.getHeader(AJAX_HEADER_NAME))) {
+            return "order::#items";
+        } else {
+            return "order";
+        }*/
     }
 	
 }
