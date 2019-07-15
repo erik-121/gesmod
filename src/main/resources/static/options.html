@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!doctype html>
+  <html lang="es">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="gestión sede">
+  <meta name="author" content="Eric">
+  <title>Gestión Sede Electrónica</title>
+  <!-- Bootstrap core CSS-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  
+</head>
+
+<body class="fixed-nav sticky-footer bg-tdgov-dark" id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+    <a class="navbar-brand" href="index.php"><img src="img/Logotipo-Color.png" class="img-fluid" alt="Logo"> Módulo de Gestión</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>  <div class="content-wrapper">
+    <div class="container-fluid">
+      <div id="page-wrapper">
+        <section class="mt-4">
+            <h3 class="text-tdgov ml-3"><i class="fa fa-institution mr-3"></i>Aplicaciones Corporativas</h3>
+            <hr class="my-4">
+            <div class="row justify-content-md-center">
+              <div class="col col-md-12">
+                <p class="lead">Opciones de configuración:</p>
+                <!--<nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#administracionElectronica" role="tab" aria-controls="nav-home" aria-selected="true">Administración Electrónica</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#aplicaciones" role="tab" aria-controls="nav-profile" aria-selected="false">Aplicaciones</a>
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <!--<div class="tab-pane fade show active" id="administracionElectronica" role="tabpanel" aria-labelledby="nav-home-tab">-->
+                    <!-- Icon Cards-->
+                    <div class="row justify-content-center mt-4">
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-gears"></i>
+                            </div>
+                            <div class="mr-5"><h5>Categorías</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="http://localhost/login" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-street-view"></i>
+                            </div>
+                            <div class="mr-5"><h5>Usuarios y roles</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="#" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-gear"></i>
+                            </div>
+                            <div class="mr-5"><h5>Departamentos</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="#" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /Icon Cards-->
+                     <!-- Icon Cards
+                    <div class="row justify-content-center">
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-folder-open-o"></i>
+                            </div>
+                            <div class="mr-5"><h5>Gestión documental</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/gestorexpedientes/" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-cloud-upload"></i>
+                            </div>
+                            <div class="mr-5"><h5>Intercambio de documentación</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/owncloud/" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-list"></i>
+                            </div>
+                            <div class="mr-5"><h5>Archivo Definitivo</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="#" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Icon Cards-->
+                     <!-- Icon Cards
+                    <div class="row justify-content-center">
+                      <div class="col-xl-3 col-sm-6 mb-3" style="display: none;">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-address-card-o"></i>
+                            </div>
+                            <div class="mr-5"><h5>Registro de funcionarios habilitados</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="http://172.20.8.70:8083/habilitalocal" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3" style="display: inline;">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-newspaper-o"></i>
+                            </div>
+                            <div class="mr-5"><h5>Tablón de anuncios</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="http://172.20.12.101/tablonAnuncios/nuevoDocumento.php" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-wpforms"></i>
+                            </div>
+                            <div class="mr-5"><h5>Generador de formularios</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/generadorformularios/" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-map-o"></i>
+                            </div>
+                            <div class="mr-5"><h5>Manual de Usuario</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="#" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Icon Cards
+                  </div>
+                  <div class="tab-pane fade" id="aplicaciones" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <!-- Icon Cards
+                    <div class="row justify-content-center row mt-4">
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-user"></i>
+                            </div>
+                            <div class="mr-5"><h5>Carpeta ciudadana</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/carpetaciudadana/" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-file-text-o"></i>
+                            </div>
+                            <div class="mr-5"><h5>Listado de procedimientos</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/solicitudes/" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-bank"></i>
+                            </div>
+                            <div class="mr-5"><h5>Sede Electrónica</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/web/sede-electronica/home" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-bar-chart"></i>
+                            </div>
+                            <div class="mr-5"><h5>BUS Analytics</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://172.20.8.103:9444/portal/login-controller?destination=%2Fportal%2Fdashboards%2Fei-analytics%2F" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-sliders"></i>
+                            </div>
+                            <div class="mr-5"><h5>BUS Management</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://172.20.8.103:9443/carbon/admin/login.jsp" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-folder-open-o"></i>
+                            </div>
+                            <div class="mr-5"><h5>Alfresco</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="http://172.20.8.84:8080/share/page/repository#filter=path%7C%2FINSIDE%7C&page=1" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-xl-3 col-sm-6 mb-3" style="display: none;">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-fw fa-info"></i>
+                            </div>
+                            <div class="mr-5"><h5>G-Inside</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://inside.seap.minhap.es/inside/login;jsessionid=F0B3502BE38E715ACCFF6AFF1A9E2968.appintgal3_19613_inside" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3" style="display: inline;">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-cogs"></i>
+                            </div>
+                            <div class="mr-5"><h5>Configuración del Registro</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="http://172.20.12.101:8090/portal/" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                              <i class="fa fa-check-square-o"></i>
+                            </div>
+                            <div class="mr-5"><h5>Verificación de documentos por CSV</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/verificacioncsv/" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+		                  <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-tdgov o-hidden h-100">
+                          <div class="card-body">
+                            <div class="card-body-icon">
+                             <i class="fa fa-fw fa-bar-chart"></i>
+                            </div>
+                            <div class="mr-5"><h5>Estadísticas</h5></div>
+                          </div>
+                          <a class="card-footer text-white clearfix small z-1" href="https://tdgov.alfatecsistemas.es/pentaho/Login" target="_blank">
+                            <span class="float-left">Acceder</span>
+                            <span class="float-right">
+                              <i class="fa fa-external-link"></i>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                     /Icon Cards-->
+                  </div>
+                </div>
+                <!-- /tab-content-->
+              </div>
+              <!-- /col col-md-12-->
+            </div>
+            <!-- /row justify-content-md-center-->
+          </section>
+        </div>
+        <!-- /.page-wrapper -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-wrapper -->
+          
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Alfatec 2018</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="lib/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
+  </body>
+</html>
