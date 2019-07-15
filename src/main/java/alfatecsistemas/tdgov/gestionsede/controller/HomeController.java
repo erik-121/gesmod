@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
 
-import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -69,7 +69,7 @@ public class HomeController {
 	 * @throws IOException
 	 */
 	@PostMapping(value = "/showAreas")
-	public String getAllAreas(Model model, @RequestParam(name = "user") String user) throws IOException {
+	public String getAllAreas(Model model, @RequestParam(name = "user", required = false) String user) throws IOException {
 
 		TokenRepositoryImpl token = new TokenRepositoryImpl();
 		tokenId = token.getToken();
@@ -128,11 +128,20 @@ public class HomeController {
 	
 	@ResponseBody
 	@PostMapping(params = "removeCategory", path = {"/actions", "/actions/{id}"})
-    public String removeCategory(@RequestParam("removeCategory") String index, HttpServletRequest request) {
+    public void removeCategory(@RequestParam("removeCategory") String index, HttpServletRequest request) {
 
-		System.out.println("Se BORRA virtualmente la categoría:" + index);
+		String body = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "Bearer " + tokenId.getAccess_token());
+		HttpEntity<String> myEntity = new HttpEntity<String>(headers);
+		RestTemplate restTemplate = new RestTemplate();
 
-		return "Se BORRA virtualmente la categoría:" + index;
+		try {
+			restTemplate.exchange("http://"+serverIP+":"+serverPort+"/api/1.0/"+workspace+"/project/category/"+index, HttpMethod.DELETE, myEntity, String.class);
+			log.info("Borrada la categoría con UID:"+index);
+		} catch (RestClientException e) {
+			log.error("Error:  " + e.toString());
+		}
         //order.items.remove(index);
         /*if (AJAX_HEADER_VALUE.equals(request.getHeader(AJAX_HEADER_NAME))) {
             return "order::#items";
