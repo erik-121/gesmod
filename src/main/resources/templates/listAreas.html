@@ -75,34 +75,34 @@
                                     <th>Publicado en Sede</th>
                                 </tr>
                             </thead>
-                            	
-                                <tbody>
+
+                            <tbody>
                                 <form method="POST">
                                     <tr th:each="cat: ${categories}">
                                         <td th:text="${cat.catName}"></td>
                                         <td th:text="${cat.catTotalProcesses}"></td>
                                         <td>
-                                            <button type="button" name="viewItem" th:value="${cat.catUid}" class="btn btn-outline-info btn-sm"><i
-                                                    class="fa fa-file-pdf-o"></i>
+                                            <button type="button" name="viewItem" th:value="${cat.catUid}"
+                                                class="btn btn-outline-info btn-sm"><i class="fa fa-file-pdf-o"></i>
                                                 Ver</button>
-                                            <button type="button" onclick="window.location.href='editCategory.html'"
+                                            <button type="button" name="editCategory" th:value="${cat.catUid}"
                                                 class='btn btn-outline-info btn-sm'><i
                                                     class='fa fa-pencil-square-o'></i>
                                                 Editar</button>
-                                                
+
                                             <button type="button" name="removeCategory" th:value="${cat.catUid}"
                                                 class="btn btn-outline-info btn-sm"><i class="fa fa-trash"></i>
-                                                Borrar</button>                                               
+                                                Borrar</button>
                                         </td>
                                         <td>
                                             <!-- Rounded switch -->
                                             <label class="switch">
                                                 <input type="checkbox">
                                                 <span class="slider round"></span>
-                                        </td>       
+                                        </td>
                                     </tr>
-                                </form>     
-                                </tbody>
+                                </form>
+                            </tbody>
                             <tfoot class="bg-tdgov-dark text-white">
                                 <tr>
                                     <th>Nombre</th>
@@ -132,32 +132,42 @@
 </body>
 
 <script type="text/javascript">
-	//jQuery
-	function replaceItems(html) {
-		// Replace the <fieldset id="items"> with a new one returned by server.
-		$('#items').replaceWith($(html));
-	}
+    //jQuery
+    function replaceItems(html) {
+        // Replace the <fieldset id="items"> with a new one returned by server.
+        $('#items').replaceWith($(html));
+    }
 
-	$('button[name="addItem"]').click(function(event) {
-		event.preventDefault();
-		var data = $('form').serialize();
-		// Add parameter "addItem" to POSTed form data. Button's name and value is
-		// POSTed only when clicked. Since "event.preventDefault();" prevents from
-		// actual clicking the button, following line will add parameter to form
-		// data.
-		data += 'addItem';
-		$.post('/actions', data);
-	});
+    $('button[name="addItem"]').click(function (event) {
+        event.preventDefault();
+        var data = $('form').serialize();
+        // Add parameter "addItem" to POSTed form data. Button's name and value is
+        // POSTed only when clicked. Since "event.preventDefault();" prevents from
+        // actual clicking the button, following line will add parameter to form
+        // data.
+        data += 'addItem';
+        $.post('/actions', data);
+    });
 
-	$('button[name="removeCategory"]').click(function(event) {
-		
-		//alert("Eliminar la categoría con UID:" + $(this).val() );
-		event.preventDefault();
-		var data = $('form').serialize();
-		// Add parameter and index of item that is going to be removed.
-		data += 'removeCategory=' + $(this).val();
-		$.post('/actions', data, replaceItems);
-	});
+    $('button[name="removeCategory"]').click(function (event) {
+
+        //alert("Eliminar la categoría con UID:" + $(this).val() );
+        event.preventDefault();
+        var data = $('form').serialize();
+        // Add parameter and index of item that is going to be removed.
+        data += 'removeCategory=' + $(this).val();
+        $.post('/actions/delete', data, replaceItems);
+    });
+
+    $('button[name="editCategory"]').click(function (event) {
+
+        //alert("Eliminar la categoría con UID:" + $(this).val() );
+        event.preventDefault();
+        var data = $('form').serialize();
+        // Add parameter and index of item that is going to be removed.
+        data += 'editCategory=' + $(this).val();
+        $.get('/actions/edit', data);
+    });
 </script>
 
 <script type="text/javascript">

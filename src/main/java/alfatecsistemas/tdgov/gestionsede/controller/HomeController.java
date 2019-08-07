@@ -122,12 +122,12 @@ public class HomeController {
 		
 		log.info("User ordered to create new Area: " + newArea);
 
-		return "login";
+		return "redirect:/";
 
 	}
 	
 	@ResponseBody
-	@PostMapping(params = "removeCategory", path = {"/actions", "/actions/{id}"})
+	@PostMapping(params = "removeCategory", path = {"/actions/delete", "/actions/delete/{id}"})
     public void removeCategory(@RequestParam("removeCategory") String index, HttpServletRequest request) {
 
 		String body = null;
@@ -148,6 +148,14 @@ public class HomeController {
         } else {
             return "order";
         }*/
-    }
+	}
+	
+	//@ResponseBody
+	@GetMapping(params = "editCategory", path = {"/actions/edit", "actions/edit/{id}"})
+	public String editCategory(Model model, @RequestParam("editCategory") String id, HttpServletRequest request) {
+
+
+		return "editCategory";
+	}
 	
 }
