@@ -97,11 +97,11 @@ public class HomeController {
 		return "listAreas";
 
 	}
-	@PostMapping(value = "/newArea")
-	public String newArea(Model model,@RequestParam(name = "newAreaName")String newArea) throws IOException {
+	@PostMapping(value = "/newCategory")
+	public String newArea(Model model,@RequestParam(name = "newAreaName")String newCategory) throws IOException {
 
 		Category newOne = new Category();
-		newOne.setCatName(newArea);
+		newOne.setCatName(newCategory);
 
 		Gson gson = new Gson();
 		String json = gson.toJson(newOne);
@@ -120,7 +120,7 @@ public class HomeController {
 			log.error("Error:  " + e.toString());
 		}
 		
-		log.info("User ordered to create new Area: " + newArea);
+		log.info("User ordered to create new Area: " + newCategory);
 
 		return "redirect:/";
 

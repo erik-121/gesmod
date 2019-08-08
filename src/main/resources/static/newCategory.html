@@ -33,7 +33,7 @@
                 <li class="breadcrumb-item active">Nueva categoría</li>
             </ol>
             <div id="page-wrapper">
-                <form action="newArea" method="POST">
+                <form action="newCategory" method="POST">
                     <div class="form-row row justify-content-md-center">
                         <div class="form-group col-lg-6">
                             <label for="text">Escriba el nombre de la nueva categoría:</label>
@@ -41,7 +41,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fa fa-list-ul"></i></div>
                                 </div>
-                                <input type="text" id="newAreaName" name="newAreaName" class="form-control"
+                                <input type="text" id="newCategoryName" name="newCategoryName" class="form-control"
                                     placeholder="Nueva Categoria" required>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                     <!-- /.row -->
                     <div class="form-row row justify-content-md-center">
                         <div class="form-group col-lg-12 text-center">
-                            <button class="btn btn-success" th:disabled="${newAreaName} == null"><i class="fa fa-sign-in"></i> Crear</button>
+                            <button class="btn btn-success" th:disabled="${newCategoryName} == null"><i class="fa fa-sign-in"></i> Crear</button>
                             <button type="button" class="btn btn-secondary" onclick="window.history.back();"><i
                                     class="fa fa-history"></i> Volver</button>
                         </div>

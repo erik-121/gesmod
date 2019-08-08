@@ -151,12 +151,18 @@
 
     $('button[name="removeCategory"]').click(function (event) {
 
-        //alert("Eliminar la categoría con UID:" + $(this).val() );
-        event.preventDefault();
-        var data = $('form').serialize();
-        // Add parameter and index of item that is going to be removed.
-        data += 'removeCategory=' + $(this).val();
-        $.post('/actions/delete', data, replaceItems);
+        var mensaje = confirm("¿Seguro que desea eliminar la categoría?");
+        //Detectamos si el usuario acepto el mensaje
+        if (mensaje) {
+            //alert("Eliminar la categoría con UID:" + $(this).val() );
+            event.preventDefault();
+            var data = $('form').serialize();
+            // Add parameter and index of item that is going to be removed.
+            data += 'removeCategory=' + $(this).val();
+            $.post('/actions/delete', data, replaceItems);
+            alert("¡Eliminada!");
+        }
+
     });
 
     $('button[name="editCategory"]').click(function (event) {
@@ -168,16 +174,6 @@
         data += 'editCategory=' + $(this).val();
         $.get('/actions/edit', data);
     });
-</script>
-
-<script type="text/javascript">
-    function viewArea() {
-        alert("Hola! :)");
-        var hola = alert($(this).value());
-    }
-    function editArea() {
-
-    }
 </script>
 
 </html>
