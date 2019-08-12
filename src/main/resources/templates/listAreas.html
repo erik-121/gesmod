@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="gestión sede">
+<meta name="author" content="Eric">
+<title>Gestión Sede Electrónica</title>
+<!-- Bootstrap core CSS-->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!-- Custom styles for this template-->
+<link href="/css/sb-admin.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+<body class="fixed-nav sticky-footer bg-tdgov-dark" id="page-top">
+    <!--Se debería mostrar la nav si está logueado ya el usuario-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+        <a class="navbar-brand" href="#"><img src="img/Logotipo-Color.png" class="img-fluid" alt="Logo" width="50%"
+                height="50%"> Gestión Sede</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-2 text-tdgov" id="userDropdown" href="#"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-files-o"></i>
+                        <span class="d-lg-inline">Gestión</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-2 text-tdgov" id="userDropdown" href="#"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-user"></i>
+                        <span class="d-lg-inline" th:text="${username}"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="usersDropdown">
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-sign-out"></i> Salir
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb" style="margin-top: 25px;">
+                <li class="breadcrumb-item"> <a href="#">GESTOR SEDE</a> </li>
+                <li class="breadcrumb-item active">LISTADO CATEGORIAS</li>
+            </ol>
+            <div id="page-wrapper">
+                <section>
+                    <h3 class="text-tdgov ml-3"><i class="fa fa-list-ul mr-3"></i>LISTADO CATEGORIAS</h3>
+                    <hr class="my-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="bg-tdgov-dark text-white">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Procedimientos</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cat: ${categories}">
+                                    <td th:text="${cat.catName}"></td>
+                                    <td th:text="${cat.catTotalProcesses}"></td>
+                                    <td>
+                                        <button type="button" onclick="viewForm('<?php echo $id;?>')" class="btn btn-outline-info btn-sm"><i class="fa fa-file-pdf-o"></i> Ver</button>
+                                        <button type='button' onclick='editForm("<?php echo $id; ?>", "<?php echo $estado; ?>")' class='btn btn-outline-info btn-sm'><i class='fa fa-pencil-square-o'></i> Editar</button>
+                                        <button type="button" onclick="delForm('<?php echo $id;?>')" class="btn btn-outline-info btn-sm"><i class="fa fa-trash"></i> Borrar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-tdgov-dark text-white">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Procedimientos</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-lg-12 mb-3 text-right"> <button class="btn btn-outline-success"
+                                onclick="window.location.href='#'"><i class="fa fa-plus-circle"></i>
+                                Nueva categoria</button> </div>
+                    </div>
+                </section>
+            </div> <!-- /.page-wrapper -->
+            <footer class="sticky-footer">
+                <div class="container">
+                    <div class="text-center">
+                        <small>Copyright © Alfatec 2019</small>
+                    </div>
+                </div>
+            </footer>
+</body> 
+<!-- Idioma en la tabla -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dataTable").dataTable().fnDestroy();
+        $('#dataTable').dataTable({
+            ordering: false,
+            responsive: true,
+            paging: true,
+            language: {
+                paginate: {
+                    first: "primero",
+                    previous: "Anterior",
+                    next: "siguiente",
+                    last: "último"
+                },
+                emptyTable: "No hay categorías",
+                lengthMenu: "MOSTRANDO1",
+                info: "MOSTRANDO2",
+                infoEmpty: "mostrando3",
+                search: "Buscar"
+            }
+        });
+    });
+</script>
+
+</html>
