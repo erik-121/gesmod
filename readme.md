@@ -1,1 +1,1 @@
-# Módulo de Gestión prueba
+# Módulo de prueba
