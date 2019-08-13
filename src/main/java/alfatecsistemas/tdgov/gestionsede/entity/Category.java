@@ -1,7 +1,7 @@
 package alfatecsistemas.tdgov.gestionsede.entity;
 
 import java.sql.Blob;
-
+/*
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,4 +27,4 @@ public class Category {
    //Getters and setters 
    //....
    //....
-}
+}*/
