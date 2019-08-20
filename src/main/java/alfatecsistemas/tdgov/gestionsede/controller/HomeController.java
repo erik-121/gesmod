@@ -32,19 +32,6 @@ public class HomeController {
 	@Value("${processmaker.workspace}")
 	private String workspace;
 
-	/**
-	 * Sample method for using spring MVC
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@GetMapping(value = "/login")
-	public String showTable(Model model) {
-
-		model.addAttribute("username", "Hola");
-
-		return "login";
-	}
 
 	/**
 	 * Method that gets the categories from the REST API at ProcessMaker, and gives it back to the model and view.
