@@ -2,11 +2,13 @@ package alfatecsistemas.tdgov.gestionsede.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.core.userdetails.User;
 
@@ -34,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .permitAll();
     }
-    @Bean
+    /*@Bean
     @Override
     public UserDetailsService userDetailsService() {
         UserDetails user =
@@ -45,7 +47,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .build();
 
         return new InMemoryUserDetailsManager(user);
-    }
+    }*/
+    
+	@SuppressWarnings("deprecation")
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+			.ldapAuthentication()
+				.userDnPatterns("uid={0}")
+				.groupSearchBase("ou=usuarios")
+				.contextSource()
+					.url("ldap://172.20.8.226:389/dc=tdgov,dc=alfatecsistemas,dc=es")
+					.and()
+				.passwordCompare()
+					.passwordEncoder(new LdapShaPasswordEncoder())
+					.passwordAttribute("userPassword");
+	}
 	
 	
 }
