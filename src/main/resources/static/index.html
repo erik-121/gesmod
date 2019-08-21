@@ -74,11 +74,20 @@
                 <p class="lead">Elija el método de acceso</p>
               </div>
             </div>
-            <div class="row justify-content-md-center"> <a href="#" class="btn btn-primary btn-lg mr-3"
-                role="button" aria-pressed="true"><i class="fa fa-address-card-o mr-3"></i>Certificado electrónico</a>
-              <a href="/login" class="btn btn-success btn-lg" role="button" aria-disabled="true"><i
-                  class="fa fa-key mr-3"></i>Credenciales (usuario y
-                contraseña)</a> </div>
+
+            <form id="form-id" action="../auth/middle" method="post">
+              <input type="hidden" id="certificadoUsuario" name="certificadoUsuario" class="form-control"
+                placeholder="Resultado" required>
+              <input type="hidden" id="url" name="url" class="form-control" value=showCategories>
+            </form>
+
+
+            <div class="row justify-content-md-center"> <button class="btn btn-primary btn-lg mr-3" type="button"
+                onclick="MiniApplet.selectCertificate('SHA1withRSA',showCertCallback,showErrorCallback);"
+                aria-pressed="true"><i class="fa fa-address-card-o mr-3"></i>Certificado electrónico</button>
+                <a href="/login" class="btn btn-success btn-lg" role="button" aria-disabled="true"><i
+                    class="fa fa-key mr-3"></i>Credenciales (usuario y
+                  contraseña)</a> </div>
           </div>
         </section>
       </div> <!-- /.page-wrapper -->
@@ -91,5 +100,15 @@
       </div>
     </footer>
 </body>
+<script type="text/javascript" src="js/miniapplet.js"></script>
+<script type="text/javascript">
+  function showErrorCallback(errorType, errorMessage) { }
+  function showCertCallback(certificateB64) {
+    document.getElementById('certificadoUsuario').value = certificateB64;
+    var form = document.getElementById("form-id");
+    form.submit();
+  }
+</script>
+
 
 </html>

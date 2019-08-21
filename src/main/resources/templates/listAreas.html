@@ -14,6 +14,8 @@
 <!-- Custom styles for this template-->
 <link href="/css/sb-admin.css" rel="stylesheet">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
@@ -56,12 +58,12 @@
         <div class="container-fluid">
             <!-- Breadcrumbs-->
             <ol class="breadcrumb" style="margin-top: 25px;">
-                <li class="breadcrumb-item"> <a href="#">GESTOR SEDE</a> </li>
-                <li class="breadcrumb-item active">LISTADO CATEGORIAS</li>
+                <li class="breadcrumb-item"> <a href="#">Gestión Sede Electrónica</a> </li>
+                <li class="breadcrumb-item active">Listado de categorías</li>
             </ol>
             <div id="page-wrapper">
                 <section>
-                    <h3 class="text-tdgov ml-3"><i class="fa fa-list-ul mr-3"></i>LISTADO CATEGORIAS</h3>
+                    <h3 class="text-tdgov ml-3"><i class="fa fa-list-ul mr-3"></i>Listado de categorías</h3>
                     <hr class="my-4">
                     <div class="table-responsive">
                         <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
@@ -70,36 +72,53 @@
                                     <th>Nombre</th>
                                     <th>Procedimientos</th>
                                     <th>Acciones</th>
+                                    <th>Publicado en Sede</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                <tr th:each="cat: ${categories}">
-                                    <td th:text="${cat.catName}"></td>
-                                    <td th:text="${cat.catTotalProcesses}"></td>
-                                    <td>
-                                        <button type="button" onclick="viewForm('<?php echo $id;?>')" class="btn btn-outline-info btn-sm"><i class="fa fa-file-pdf-o"></i> Ver</button>
-                                        <button type='button' onclick='editForm("<?php echo $id; ?>", "<?php echo $estado; ?>")' class='btn btn-outline-info btn-sm'><i class='fa fa-pencil-square-o'></i> Editar</button>
-                                        <button type="button" onclick="delForm('<?php echo $id;?>')" class="btn btn-outline-info btn-sm"><i class="fa fa-trash"></i> Borrar</button>
-                                    </td>
-                                </tr>
+                                <form method="POST">
+                                    <tr th:each="cat: ${categories}">
+                                        <td th:text="${cat.catName}"></td>
+                                        <td th:text="${cat.catTotalProcesses}"></td>
+                                        <td>
+                                            <button type="button" name="viewItem" th:value="${cat.catUid}"
+                                                class="btn btn-outline-info btn-sm"><i class="fa fa-file-pdf-o"></i>
+                                                Ver</button>
+                                            <button type="button" name="editCategory" th:value="${cat.catUid}"
+                                                class='btn btn-outline-info btn-sm'><i
+                                                    class='fa fa-pencil-square-o'></i>
+                                                Editar</button>
+
+                                            <button type="button" name="removeCategory" th:value="${cat.catUid}"
+                                                class="btn btn-outline-info btn-sm"><i class="fa fa-trash"></i>
+                                                Borrar</button>
+                                        </td>
+                                        <td>
+                                            <!-- Rounded switch -->
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                        </td>
+                                    </tr>
+                                </form>
                             </tbody>
                             <tfoot class="bg-tdgov-dark text-white">
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Procedimientos</th>
                                     <th>Acciones</th>
+                                    <th>Publicado en Sede</th>
                                 </tr>
                             </tfoot>
-                            <tbody>
-
-                            </tbody>
                         </table>
-
                     </div>
                     <div class="row" style="margin-top: 15px;">
-                        <div class="col-lg-12 mb-3 text-right"> <button class="btn btn-outline-success"
-                                onclick="window.location.href='#'"><i class="fa fa-plus-circle"></i>
-                                Nueva categoria</button> </div>
+                        <div class="col-lg-12 mb-3 text-right">
+                            <button class="btn btn-outline-success" onclick="location.href='newCategory.html'"><i
+                                    class="fa fa-plus-circle"></i>
+                                Nueva categoria</button>
+                        </div>
                     </div>
                 </section>
             </div> <!-- /.page-wrapper -->
@@ -110,29 +129,50 @@
                     </div>
                 </div>
             </footer>
-</body> 
-<!-- Idioma en la tabla -->
+</body>
+
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#dataTable").dataTable().fnDestroy();
-        $('#dataTable').dataTable({
-            ordering: false,
-            responsive: true,
-            paging: true,
-            language: {
-                paginate: {
-                    first: "primero",
-                    previous: "Anterior",
-                    next: "siguiente",
-                    last: "último"
-                },
-                emptyTable: "No hay categorías",
-                lengthMenu: "MOSTRANDO1",
-                info: "MOSTRANDO2",
-                infoEmpty: "mostrando3",
-                search: "Buscar"
-            }
-        });
+    //jQuery
+    function replaceItems(html) {
+        // Replace the <fieldset id="items"> with a new one returned by server.
+        $('#items').replaceWith($(html));
+    }
+
+    $('button[name="addItem"]').click(function (event) {
+        event.preventDefault();
+        var data = $('form').serialize();
+        // Add parameter "addItem" to POSTed form data. Button's name and value is
+        // POSTed only when clicked. Since "event.preventDefault();" prevents from
+        // actual clicking the button, following line will add parameter to form
+        // data.
+        data += 'addItem';
+        $.post('/actions', data);
+    });
+
+    $('button[name="removeCategory"]').click(function (event) {
+
+        var mensaje = confirm("¿Seguro que desea eliminar la categoría?");
+        //Detectamos si el usuario acepto el mensaje
+        if (mensaje) {
+            //alert("Eliminar la categoría con UID:" + $(this).val() );
+            event.preventDefault();
+            var data = $('form').serialize();
+            // Add parameter and index of item that is going to be removed.
+            data += 'removeCategory=' + $(this).val();
+            $.post('/actions/delete', data, replaceItems);
+            alert("¡Eliminada!");
+        }
+
+    });
+
+    $('button[name="editCategory"]').click(function (event) {
+
+        //alert("Eliminar la categoría con UID:" + $(this).val() );
+        event.preventDefault();
+        var data = $('form').serialize();
+        // Add parameter and index of item that is going to be removed.
+        data += 'editCategory=' + $(this).val();
+        $.get('/actions/edit', data);
     });
 </script>
 
