@@ -31,10 +31,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import alfatecsistemas.tdgov.gestionsede.model.Token;
 import alfatecsistemas.tdgov.gestionsede.DemoApplication;
@@ -59,20 +62,15 @@ public class HomeController {
 
 	@Value("${processmaker.workspace}")
 	private String workspace;
+	
+	
 
-	/**
-	 * Sample method for using spring MVC
-	 * 
-	 * @param model
-	 * @return
-	 */
-	/*
-	 * @GetMapping(value = "/login") public String showTable(Model model) {
-	 * 
-	 * model.addAttribute("username", "Hola");
-	 * 
-	 * return "login"; }
-	 */
+    @RequestMapping(value={"/login"}, method = RequestMethod.GET)
+    public ModelAndView login(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
 
 	/**
 	 * Method that gets the categories from the REST API at ProcessMaker, and gives
@@ -83,7 +81,7 @@ public class HomeController {
 	 * @throws IOException
 	 */
 	@GetMapping(value = "/showCategories")
-	public String getAllAreas(Model model, @RequestParam(name = "user", required = false) String user)
+	public String getAllAreas(Model model, @RequestParam(name = "username", required = false) String user)
 			throws IOException {
 
 		TokenRepositoryImpl token = new TokenRepositoryImpl();
@@ -107,8 +105,6 @@ public class HomeController {
 		}
 
 		model.addAttribute("categories", cats);
-
-		model.addAttribute("username", user);
 
 		return "listAreas";
 
@@ -190,7 +186,7 @@ public class HomeController {
 
 		String userName = IETFUtils.valueToString(cn.getFirst().getValue());
 		
-		return "redirect:/" + url + "?user=" + userName;
+		return "redirect:/" + url + "?username=" + userName;
 		
 	}
 
