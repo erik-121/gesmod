@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="gestión sede">
+<meta name="author" content="Eric">
+<title>Gestión Sede Electrónica</title>
+<!-- Bootstrap core CSS-->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+
+<!-- Custom styles for this template-->
+<link href="/public/css/sb-admin.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/public/img/favicon.ico" type="image/x-icon">
+
+<body class="fixed-nav sticky-footer bg-tdgov-dark" id="page-top">
+	<!--Se debería mostrar la nav si está logueado ya el usuario-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+		id="mainNav">
+		<a class="navbar-brand" href="#"><img
+			src="/public/img/Logotipo-Color.png" class="img-fluid" alt="Logo"
+			width="50%" height="50%"> Gestión Sede</a>
+	</nav>
+	<div class="content-wrapper">
+		<div class="container-fluid">
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb" style="margin-top: 25px;">
+				<li class="breadcrumb-item"><a href="../index.html">Módulo
+						de gestión</a></li>
+				<li class="breadcrumb-item active">Acceso</li>
+			</ol>
+			<div id="page-wrapper">
+				<section>
+					<div class="jumbotron">
+						<h1 class="display-4">Acceso con credenciales</h1>
+						<hr class="my-4">
+						<div class="row justify-content-md-center">
+							<div class="col col-lg-2">
+								<img src="/public/img/icos-acceso.png" class="img-fluid">
+							</div>
+							<div class="col-md-9">
+								<section id="form">
+									<div th:if="${param.error}" class="alert alert-danger"
+										role="alert">USUARIO INCORRECTO!</div>
+									<div th:if="${param.logout}" class="alert alert-success"
+										role="alert">Has sido deslogueado correctamente.</div>
+									<form th:action="@{/login}" method="post">
+										<div class="form-row">
+											<p class="lead">Para acceder al módulo de gestión, Ud.
+												debe acreditar su identidad mediante credenciales (usuario,
+												contraseña).</p>
+											<p class="lead">Si usted no posee sus credenciales o se
+												han extraviado, contacte con el administrador.</p>
+										</div>
+										<!-- /.row -->
+										<div class="form-row row justify-content-md-center">
+											<div class="form-group col-lg-6">
+												<label for="nombre">Nombre de usuario:</label>
+												<div class="input-group">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<i class="fa fa-user"></i>
+														</div>
+													</div>
+													<input type="text" id="username" name="username"
+														class="form-control" placeholder="Usuario" required>
+												</div>
+											</div>
+											<!-- /.col -->
+										</div>
+										<!-- /.row -->
+										<div class="form-row row justify-content-md-center">
+											<div class="form-group col-lg-6">
+												<label for="dni">Contraseña:</label>
+												<div class="input-group">
+													<div class="input-group-prepend">
+														<div class="input-group-text">
+															<i class="fa fa-key"></i>
+														</div>
+													</div>
+													<input type="password" id="password" name="password"
+														class="form-control" placeholder="Contraseña">
+												</div>
+											</div>
+											<!-- /.col -->
+										</div>
+										<!-- /.row -->
+										<div class="form-row">
+											<div class="form-group col-lg-12 text-center">
+												<button class="btn btn-success">
+													<i class="fa fa-sign-in"></i> Acceder
+												</button>
+												<button type="button" class="btn btn-secondary"
+													onclick="window.history.back();">
+													<i class="fa fa-history"></i>Volver
+												</button>
+											</div>
+										</div>
+										<!-- /.row -->
+									</form>
+								</section>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- /.page-wrapper -->
+		</div>
+		<!-- /.content-wrapper -->
+		<footer class="sticky-footer">
+			<div class="container">
+				<div class="text-center">
+					<small>Copyright © Alfatec 2019</small>
+				</div>
+			</div>
+		</footer>
+</body>
+
+</html>

@@ -2,13 +2,15 @@ package alfatecsistemas.tdgov.gestionsede.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.core.userdetails.User;
 
@@ -34,9 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/showCategories")
                 .and()
             .logout()
+            	.invalidateHttpSession(true)
+            	.deleteCookies("JSESSIONID")
                 .permitAll();
     }
-    /*@Bean
+    @Bean
     @Override
     public UserDetailsService userDetailsService() {
         UserDetails user =
@@ -47,22 +51,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .build();
 
         return new InMemoryUserDetailsManager(user);
-    }*/
+    }
     
-	@SuppressWarnings("deprecation")
-	@Override
+	/*@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.ldapAuthentication()
-				.userDnPatterns("uid={0}")
-				.groupSearchBase("ou=usuarios")
+				.userDnPatterns("uid={0},ou=usuarios")
+				//.groupSearchBase("ou=groups")
 				.contextSource()
 					.url("ldap://172.20.8.226:389/dc=tdgov,dc=alfatecsistemas,dc=es")
 					.and()
 				.passwordCompare()
-					.passwordEncoder(new LdapShaPasswordEncoder())
+					.passwordEncoder(passwordEncoder())
 					.passwordAttribute("userPassword");
 	}
 	
+	private PasswordEncoder passwordEncoder() {
+		final BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+		return new PasswordEncoder() {
+			@Override
+			public String encode(CharSequence rawPassword) {
+				return bcrypt.encode(rawPassword.toString());
+			}
+			@Override
+			public boolean matches(CharSequence rawPassword, String encodedPassword) {
+				return bcrypt.matches(rawPassword, encodedPassword);
+			}
+		};
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder bcryptEncoder() {
+		return new BCryptPasswordEncoder();
+	}*/
 	
 }

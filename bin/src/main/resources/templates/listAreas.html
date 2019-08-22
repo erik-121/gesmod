@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="gestión sede">
+<meta name="author" content="Eric">
+<title>Gestión Sede Electrónica</title>
+<!-- Bootstrap core CSS-->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Custom fonts for this template-->
+<link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+
+<!-- Custom styles for this template-->
+<link href="/css/sb-admin.css" rel="stylesheet">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+<body class="fixed-nav sticky-footer bg-tdgov-dark" id="page-top">
+	<!--Se debería mostrar la nav si está logueado ya el usuario-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+		id="mainNav">
+		<a class="navbar-brand" href="#"><img src="img/Logotipo-Color.png"
+			class="img-fluid" alt="Logo" width="50%" height="50%"> Gestión
+			Sede</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarResponsive"
+			aria-controls="navbarResponsive" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle mr-lg-2 text-tdgov"
+					id="userDropdown" href="#" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <i
+						class="fa fa-files-o"></i> <span class="d-lg-inline">Gestión</span>
+				</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle mr-lg-2 text-tdgov"
+					id="userDropdown" href="#" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <i
+						class="fa fa-fw fa-user"></i> <span class="d-lg-inline"
+						th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+				</a>
+					<div class="dropdown-menu" aria-labelledby="usersDropdown">
+						<a class="dropdown-item" href="#"> <i class="fa fa-sign-out"></i>
+							Salir
+						</a>
+					</div></li>
+			</ul>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Salir" />
+			</form>
+		</div>
+	</nav>
+	<div class="content-wrapper">
+		<div class="container-fluid">
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb" style="margin-top: 25px;">
+				<li class="breadcrumb-item"><a href="#">Gestión Sede
+						Electrónica</a></li>
+				<li class="breadcrumb-item active">Listado de categorías</li>
+			</ol>
+			<div id="page-wrapper">
+				<section>
+					<h3 class="text-tdgov ml-3">
+						<i class="fa fa-list-ul mr-3"></i>Listado de categorías
+					</h3>
+					<hr class="my-4">
+					<div class="table-responsive">
+						<table class="table table-hover" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead class="bg-tdgov-dark text-white">
+								<tr>
+									<th>Nombre</th>
+									<th>Procedimientos</th>
+									<th>Acciones</th>
+									<th>Publicado en Sede</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<form method="POST">
+									<tr th:each="cat: ${categories}">
+										<td th:text="${cat.catName}"></td>
+										<td th:text="${cat.catTotalProcesses}"></td>
+										<td>
+											<button type="button" name="viewItem"
+												th:value="${cat.catUid}" class="btn btn-outline-info btn-sm">
+												<i class="fa fa-file-pdf-o"></i> Ver
+											</button>
+											<button type="button" name="editCategory"
+												th:value="${cat.catUid}" class='btn btn-outline-info btn-sm'>
+												<i class='fa fa-pencil-square-o'></i> Editar
+											</button>
+
+											<button type="button" name="removeCategory"
+												th:value="${cat.catUid}" class="btn btn-outline-info btn-sm">
+												<i class="fa fa-trash"></i> Borrar
+											</button>
+										</td>
+										<td>
+											<!-- Rounded switch --> <label class="switch"> <input
+												type="checkbox"> <span class="slider round"></span>
+										</td>
+									</tr>
+								</form>
+							</tbody>
+							<tfoot class="bg-tdgov-dark text-white">
+								<tr>
+									<th>Nombre</th>
+									<th>Procedimientos</th>
+									<th>Acciones</th>
+									<th>Publicado en Sede</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<div class="row" style="margin-top: 15px;">
+						<div class="col-lg-12 mb-3 text-right">
+							<button class="btn btn-outline-success"
+								onclick="location.href='newCategory.html'">
+								<i class="fa fa-plus-circle"></i> Nueva categoria
+							</button>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- /.page-wrapper -->
+			<footer class="sticky-footer">
+				<div class="container">
+					<div class="text-center">
+						<small>Copyright © Alfatec 2019</small>
+					</div>
+				</div>
+			</footer>
+</body>
+
+<script type="text/javascript">
+	//jQuery
+	function replaceItems(html) {
+		// Replace the <fieldset id="items"> with a new one returned by server.
+		$('#items').replaceWith($(html));
+	}
+
+	$('button[name="addItem"]').click(function(event) {
+		event.preventDefault();
+		var data = $('form').serialize();
+		// Add parameter "addItem" to POSTed form data. Button's name and value is
+		// POSTed only when clicked. Since "event.preventDefault();" prevents from
+		// actual clicking the button, following line will add parameter to form
+		// data.
+		data += 'addItem';
+		$.post('/actions', data);
+	});
+
+	$('button[name="removeCategory"]').click(function(event) {
+
+		var mensaje = confirm("¿Seguro que desea eliminar la categoría?");
+		//Detectamos si el usuario acepto el mensaje
+		if (mensaje) {
+			//alert("Eliminar la categoría con UID:" + $(this).val() );
+			event.preventDefault();
+			var data = $('form').serialize();
+			// Add parameter and index of item that is going to be removed.
+			data += 'removeCategory=' + $(this).val();
+			$.post('/actions/delete', data, replaceItems);
+			alert("¡Eliminada!");
+		}
+
+	});
+
+	$('button[name="editCategory"]').click(function(event) {
+
+		//alert("Eliminar la categoría con UID:" + $(this).val() );
+		event.preventDefault();
+		var data = $('form').serialize();
+		// Add parameter and index of item that is going to be removed.
+		data += 'editCategory=' + $(this).val();
+		$.get('/actions/edit', data);
+	});
+</script>
+
+</html>
