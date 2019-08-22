@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -50,8 +51,8 @@
 					class="nav-link dropdown-toggle mr-lg-2 text-tdgov"
 					id="userDropdown" href="#" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false"> <i
-						class="fa fa-fw fa-user"></i> <span class="d-lg-inline"
-						th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+						class="fa fa-fw fa-user"></i> <span sec:authentication="name"
+						class="d-lg-inline" th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
 				</a>
 					<div class="dropdown-menu" aria-labelledby="usersDropdown">
 						<a class="dropdown-item" href="#"> <i class="fa fa-sign-out"></i>
@@ -130,7 +131,7 @@
 					<div class="row" style="margin-top: 15px;">
 						<div class="col-lg-12 mb-3 text-right">
 							<button class="btn btn-outline-success"
-								onclick="location.href='newCategory.html'">
+								onclick="location.href='newCategory'">
 								<i class="fa fa-plus-circle"></i> Nueva categoria
 							</button>
 						</div>

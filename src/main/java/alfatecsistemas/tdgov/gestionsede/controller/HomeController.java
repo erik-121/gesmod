@@ -109,9 +109,15 @@ public class HomeController {
 		return "listAreas";
 
 	}
+    @RequestMapping(value={"/newCategory"}, method = RequestMethod.GET)
+    public ModelAndView newCategory(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("newCategory");
+        return modelAndView;
+    }
 
-	@PostMapping(value = "/newCategory")
-	public String newArea(Model model, @RequestParam(name = "newCategoryName") String newCategory) throws IOException {
+	@PostMapping(value = "/createCategory")
+	public String createNewCategory(@RequestParam(name = "newCategoryName") String newCategory) throws IOException {
 
 		Category newOne = new Category();
 		newOne.setCatName(newCategory);
