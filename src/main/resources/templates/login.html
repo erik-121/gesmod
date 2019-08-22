@@ -18,11 +18,10 @@
 <!-- Custom styles for this template-->
 <link href="/public/css/sb-admin.css" rel="stylesheet">
 
-<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/public/img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/public/img/favicon.ico" type="image/x-icon">
 
 <body class="fixed-nav sticky-footer bg-tdgov-dark" id="page-top">
-	<!--Se debería mostrar la nav si está logueado ya el usuario-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
 		id="mainNav">
 		<a class="navbar-brand" href="#"><img
@@ -49,7 +48,7 @@
 							<div class="col-md-9">
 								<section id="form">
 									<div th:if="${param.error}" class="alert alert-danger"
-										role="alert">USUARIO INCORRECTO!</div>
+										role="alert">Usuario incorrecto!</div>
 									<div th:if="${param.logout}" class="alert alert-success"
 										role="alert">Has sido deslogueado correctamente.</div>
 									<form th:action="@{/login}" method="post">

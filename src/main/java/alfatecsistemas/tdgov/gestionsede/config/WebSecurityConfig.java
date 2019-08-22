@@ -1,18 +1,15 @@
 package alfatecsistemas.tdgov.gestionsede.config;
 
-import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -27,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
             	.antMatchers(publicResources).permitAll()
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -40,6 +37,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             	.deleteCookies("JSESSIONID")
                 .permitAll();
     }
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+			.ldapAuthentication()
+				.userDnPatterns("uid={0},ou=usuarios")
+				//.groupSearchBase("ou=groups")
+				.contextSource()
+					.url("ldap://172.20.8.226:389/dc=tdgov,dc=alfatecsistemas,dc=es")
+					.and()
+				.passwordCompare()
+				.passwordEncoder(new LdapShaPasswordEncoder())
+				.passwordAttribute("userPassword");
+	}
+    /*
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
@@ -52,22 +63,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(user);
     }
-    
-	/*@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.ldapAuthentication()
-				.userDnPatterns("uid={0},ou=usuarios")
-				//.groupSearchBase("ou=groups")
-				.contextSource()
-					.url("ldap://172.20.8.226:389/dc=tdgov,dc=alfatecsistemas,dc=es")
-					.and()
-				.passwordCompare()
-					.passwordEncoder(passwordEncoder())
-					.passwordAttribute("userPassword");
-	}
+    */
 	
-	private PasswordEncoder passwordEncoder() {
+	/*private PasswordEncoder passwordEncoder() {
 		final BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 		return new PasswordEncoder() {
 			@Override
@@ -79,8 +77,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				return bcrypt.matches(rawPassword, encodedPassword);
 			}
 		};
-	}
-	
+	}*/
+	/*
 	@Bean
 	public BCryptPasswordEncoder bcryptEncoder() {
 		return new BCryptPasswordEncoder();
